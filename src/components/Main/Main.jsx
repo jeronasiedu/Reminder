@@ -35,7 +35,11 @@ const Main = () => {
   const handleToggle = () => {
     dispatch(toggleSidebar())
   }
-
+  useEffect(() => {
+    setTimeout(() => {
+      window.location.reload(false)
+    }, 500)
+  }, [])
   // REACT QUERY
 
   // MUTATION
@@ -139,13 +143,13 @@ const Main = () => {
               />
             </div>
           )}
-          {isError && (
+          {/* {isError && (
             <div className="error">
               <p>
                 There were errors fetching your notes, please pull to refresh
               </p>
             </div>
-          )}
+          )} */}
           <motion.ul className="lists">
             {data &&
               data.notes
