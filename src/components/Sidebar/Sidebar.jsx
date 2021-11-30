@@ -181,7 +181,7 @@ const Sidebar = () => {
                     type="Puff"
                     height={20}
                     width={20}
-                    timeout={10000}
+                    timeout={20000}
                     color="#1d8bf8"
                   />
                 </div>

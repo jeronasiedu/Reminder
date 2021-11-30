@@ -1,0 +1,28 @@
+.notfound {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.notfound h2 {
+  text-align: center;
+  color: #3f3f49;
+  font-weight: 400;
+}
+.notfound-img {
+  width: 60vw;
+  height: clamp(400px, 70vh, 30rem);
+
+  min-width: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notfound-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: drop-shadow(2px 5px 10px rgba(127, 127, 179, 0.164));
+}

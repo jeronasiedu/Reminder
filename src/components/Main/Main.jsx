@@ -12,6 +12,7 @@ import { getNotes, createNote, deleteNote } from '../../utils/Api'
 import { useQuery, useQueryClient, useMutation, QueryCache } from 'react-query'
 import Loader from 'react-loader-spinner'
 import PullToRefresh from 'react-simple-pull-to-refresh'
+import { toast } from 'react-toastify'
 const Main = () => {
   const media = useMediaQuery('(max-width: 480px')
   const queryCache = new QueryCache()
@@ -25,7 +26,6 @@ const Main = () => {
   const [isInputActive, setIsInputActive] = useState(false)
   // Checking if a user is logged in
   useEffect(() => {
-    setReload(true)
     const token = getToken()
     if (!token) {
       navigate('/login', { replace: true })
@@ -34,9 +34,14 @@ const Main = () => {
   const handleToggle = () => {
     dispatch(toggleSidebar())
   }
+  useEffect(() => {
+    setTimeout(() => {
+      setReload(!reload)
+    }, 500)
+  }, [])
 
   // REACT QUERY
-
+  const { data, isLoading, isError } = useQuery('notes', getNotes)
   // MUTATION
   const { mutateAsync: addAsync, isLoading: addLoading } = useMutation(
     createNote,
@@ -54,8 +59,11 @@ const Main = () => {
       },
     }
   )
+  if (isError) {
+    toast.error('You seem to be offline')
+  }
   // getting notes
-  const { data, isLoading, isError } = useQuery('notes', getNotes)
+
   // handle logout
   const handleLogOut = async () => {
     removeToken()
@@ -85,7 +93,7 @@ const Main = () => {
     setIsInputActive(true)
   }
   const handleRefresh = async () => {
-    setReload(true)
+    setReload(!reload)
   }
   return (
     <motion.section className="main">
