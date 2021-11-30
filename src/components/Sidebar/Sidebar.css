@@ -1,0 +1,86 @@
+.sidebar {
+  background: #2a3341;
+  flex: 1.6;
+  color: #dfdfdf;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-block: 0.5rem;
+}
+.list-scroll {
+  overflow-y: auto;
+  height: 100%;
+  overflow-x: hidden;
+}
+.tag-lists {
+  padding: 0.2rem;
+  position: relative;
+}
+.loader-sidebar {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.list-container {
+  border-bottom: 1px solid #ffffff56;
+  display: flex;
+  justify-content: space-between;
+}
+.delete-list {
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s ease !important;
+  transform: translate3d(0, 100%, 0) scale(0.2);
+}
+.list-container:hover .delete-list {
+  transform: translate3d(0, 0, 0) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+.tag-list {
+  margin-block: 0.2rem;
+  padding: 0.2rem;
+  border-radius: 2px;
+  text-transform: capitalize;
+  font-size: 1rem;
+  font-family: 'poppins';
+  cursor: pointer;
+}
+.tag-list.active {
+  color: burlywood;
+}
+.tag-list:hover {
+  color: rgb(167, 202, 255);
+}
+.add-tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tag-input-form {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(128, 179, 255);
+  padding-inline: 0.1rem;
+  border-radius: 4px;
+  width: 95%;
+  margin-inline: auto;
+}
+.tag-input-form input {
+  width: 80%;
+  background: 0;
+  caret-color: #fff;
+  color: #fff;
+  font-family: inherit;
+}
+@media only screen and (max-width: 480px) {
+  .sidebar {
+    flex: 2;
+  }
+  .tag-list {
+    font-size: 0.85rem;
+  }
+}

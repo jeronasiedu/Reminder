@@ -1,0 +1,10 @@
+.App {
+  display: flex;
+  justify-content: center;
+  max-width: 600px;
+  margin: 3rem auto;
+  background: #cdc6e0af;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  height: clamp(250px, 70vh, 410px);
+}
