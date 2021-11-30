@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleSidebar, closeSidebar } from '../../Redux/Slice'
 import ListItem from './ListItem'
-import Typical from 'react-typical'
 import { useNavigate } from 'react-router-dom'
 import { getToken, removeToken } from '../../utils/helpers'
 import { getNotes, createNote, deleteNote } from '../../utils/Api'
@@ -119,13 +118,7 @@ const Main = () => {
           {data && data.notes.length < 1 && (
             <div className="noItem">
               <h3>No reminder</h3>
-              <p>
-                <Typical
-                  loop={Infinity}
-                  wrapper="span"
-                  steps={['Got', 3000, 'nothing', 3000, 'today', 3000]}
-                />
-              </p>
+              <p>Got nothing today?</p>
             </div>
           )}
           {isLoading && (
