@@ -102,7 +102,7 @@ const SignUp = () => {
       >
         <div className="form-container">
           <motion.header variants={heading} className="heading">
-            <h2>Sign up</h2>
+            <h2>Create Account</h2>
           </motion.header>
           <form onSubmit={handleSubmit}>
             <motion.input
