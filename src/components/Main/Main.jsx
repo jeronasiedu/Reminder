@@ -37,7 +37,7 @@ const Main = () => {
   }
   useEffect(() => {
     setTimeout(() => {
-      window.location.reload(false)
+      setReload(true)
     }, 500)
   }, [])
   // REACT QUERY
