@@ -95,6 +95,10 @@ const Main = () => {
   const handleRefresh = async () => {
     setReload(!reload)
   }
+  // handle input focus
+  const handleFocus = (e) => {
+    setIsInputActive(false)
+  }
   return (
     <motion.section className="main">
       <PullToRefresh onRefresh={handleRefresh}>
@@ -181,7 +185,7 @@ const Main = () => {
               }}
               exit={{
                 opacity: 0,
-                y: -5,
+                y: 5,
               }}
               className="input"
             >
@@ -196,6 +200,7 @@ const Main = () => {
                   onChange={(e) => {
                     setText(e.target.value)
                   }}
+                  onBlur={handleFocus}
                 />
                 {addLoading ? (
                   <div className="loader-main">

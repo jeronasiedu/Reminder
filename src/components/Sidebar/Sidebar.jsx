@@ -82,6 +82,9 @@ const Sidebar = () => {
       flex: 0,
     },
   }
+  const handleFocus = () => {
+    setAddOPen(false)
+  }
   return (
     <AnimatePresence>
       <motion.section
@@ -169,6 +172,7 @@ const Sidebar = () => {
                 onChange={(e) => {
                   setText(e.target.value)
                 }}
+                onBlur={handleFocus}
               />
               {addLoading ? (
                 <div
