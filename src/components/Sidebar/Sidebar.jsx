@@ -8,6 +8,7 @@ import { BiPlus, BiCheck, IoClose } from 'react-icons/all'
 import { useQuery, useMutation, useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
 import { getTypes, createType, deleteType } from '../../utils/Api'
+import { Skeleton } from '@mui/material'
 import Loader from 'react-loader-spinner'
 const Sidebar = () => {
   const [text, setText] = useState('')
@@ -107,45 +108,46 @@ const Sidebar = () => {
                 />
               </div>
             )}
-            {data &&
-              data.types.map((item, idx) => {
-                return (
-                  <motion.div
-                    initial={{
-                      opacity: 0,
-                      y: 20,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                    }}
-                    key={idx}
-                    className="list-container"
-                  >
-                    <motion.li
-                      className="tag-list"
-                      onClick={(e) => {
-                        handleActiveTag(e, item)
+            {data
+              ? data.types.map((item, idx) => {
+                  return (
+                    <motion.div
+                      initial={{
+                        opacity: 0,
+                        y: 20,
                       }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                      }}
+                      key={idx}
+                      className="list-container"
                     >
-                      {item.name}
-                    </motion.li>
-                    {item.name !== 'all' && (
-                      <IconButton
-                        size="small"
-                        aria-label="delete"
-                        color="warning"
+                      <motion.li
+                        className="tag-list"
                         onClick={(e) => {
-                          handleDelete(e, item)
+                          handleActiveTag(e, item)
                         }}
-                        className="delete-list"
                       >
-                        <IoClose />
-                      </IconButton>
-                    )}
-                  </motion.div>
-                )
-              })}
+                        {item.name}
+                      </motion.li>
+                      {item.name !== 'all' && (
+                        <IconButton
+                          size="small"
+                          aria-label="delete"
+                          color="warning"
+                          onClick={(e) => {
+                            handleDelete(e, item)
+                          }}
+                          className="delete-list"
+                        >
+                          <IoClose />
+                        </IconButton>
+                      )}
+                    </motion.div>
+                  )
+                })
+              : null}
           </ul>
         </motion.div>
         <div className="tag">

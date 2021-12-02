@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const UIslice = createSlice({
   name: 'UI',
   initialState: {
-    sideBarOpen: false,
+    sideBarOpen: true,
     tags: ['all'],
     activeTag: {},
   },

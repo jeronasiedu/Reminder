@@ -12,6 +12,7 @@ import { getNotes, createNote, deleteNote } from '../../utils/Api'
 import { useQuery, useQueryClient, useMutation, QueryCache } from 'react-query'
 import Loader from 'react-loader-spinner'
 import PullToRefresh from 'react-simple-pull-to-refresh'
+import { Skeleton, Stack } from '@mui/material'
 import { toast } from 'react-toastify'
 const Main = () => {
   const media = useMediaQuery('(max-width: 480px')
@@ -152,7 +153,7 @@ const Main = () => {
             </div>
           )} */}
           <motion.ul className="lists">
-            {data &&
+            {data ? (
               data.notes
                 .filter((item) => {
                   if (activeTag.name === 'all') {
@@ -168,7 +169,15 @@ const Main = () => {
                       deleteItem={() => deleteItem(item._id)}
                     />
                   )
-                })}
+                })
+            ) : (
+              <Stack spacing={1}>
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton variant="text" />
+              </Stack>
+            )}
           </motion.ul>
         </div>
         {/* SEARCH SECTION */}
