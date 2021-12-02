@@ -18,7 +18,7 @@ ReactDOM.render(
       <Provider store={Store}>
         <App />
       </Provider>
-      <ToastContainer autoClose={3000} />
+      <ToastContainer autoClose={3000} limit={2} />
       <ReactQueryDevtools />
     </QueryClientProvider>
   </BrowserRouter>,

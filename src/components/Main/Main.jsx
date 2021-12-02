@@ -61,7 +61,9 @@ const Main = () => {
     }
   )
   if (isError) {
-    toast.error('You seem to be offline')
+    toast.error('You seem to be offline',{
+      toastId:'do not repeat'
+    })
   }
   // getting notes
 

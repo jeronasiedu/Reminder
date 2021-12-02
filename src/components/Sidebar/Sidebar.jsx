@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './Sidebar.css'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSelector, useDispatch } from 'react-redux'
-import { IconButton } from '@mui/material'
+import { IconButton, Stack } from '@mui/material'
 import { updateActiveTag } from '../../Redux/Slice'
 import { BiPlus, BiCheck, IoClose } from 'react-icons/all'
 import { useQuery, useMutation, useQueryClient } from 'react-query'
@@ -108,46 +108,53 @@ const Sidebar = () => {
                 />
               </div>
             )}
-            {data
-              ? data.types.map((item, idx) => {
-                  return (
-                    <motion.div
-                      initial={{
-                        opacity: 0,
-                        y: 20,
+            {data ? (
+              data.types.map((item, idx) => {
+                return (
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      y: 20,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    key={idx}
+                    className="list-container"
+                  >
+                    <motion.li
+                      className="tag-list"
+                      onClick={(e) => {
+                        handleActiveTag(e, item)
                       }}
-                      animate={{
-                        opacity: 1,
-                        y: 0,
-                      }}
-                      key={idx}
-                      className="list-container"
                     >
-                      <motion.li
-                        className="tag-list"
+                      {item.name}
+                    </motion.li>
+                    {item.name !== 'all' && (
+                      <IconButton
+                        size="small"
+                        aria-label="delete"
+                        color="warning"
                         onClick={(e) => {
-                          handleActiveTag(e, item)
+                          handleDelete(e, item)
                         }}
+                        className="delete-list"
                       >
-                        {item.name}
-                      </motion.li>
-                      {item.name !== 'all' && (
-                        <IconButton
-                          size="small"
-                          aria-label="delete"
-                          color="warning"
-                          onClick={(e) => {
-                            handleDelete(e, item)
-                          }}
-                          className="delete-list"
-                        >
-                          <IoClose />
-                        </IconButton>
-                      )}
-                    </motion.div>
-                  )
-                })
-              : null}
+                        <IoClose />
+                      </IconButton>
+                    )}
+                  </motion.div>
+                )
+              })
+            ) : (
+              <Stack>
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton variant="text" />
+              </Stack>
+            )}
           </ul>
         </motion.div>
         <div className="tag">
