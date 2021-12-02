@@ -61,8 +61,8 @@ const Main = () => {
     }
   )
   if (isError) {
-    toast.error('You seem to be offline',{
-      toastId:'do not repeat'
+    toast.error('You seem to be offline', {
+      toastId: 'do not repeat',
     })
   }
   // getting notes
@@ -96,7 +96,7 @@ const Main = () => {
     setIsInputActive(true)
   }
   const handleRefresh = async () => {
-    setReload(!reload)
+    window.location.reload()
   }
   // handle input focus
   const handleFocus = (e) => {
